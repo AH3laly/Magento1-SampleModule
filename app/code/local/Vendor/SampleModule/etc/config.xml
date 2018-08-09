@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<config>
+	<modules>
+		<Vendor_SampleModule>
+			<version>0.1.0</version>
+		</Vendor_SampleModule>
+	</modules>
+    <frontend>
+        <routers>
+            <customization>
+                <use>standard</use>
+                <args>
+                    <module>Vendor_SampleModule</module>
+                    <frontName>samplemodule</frontName>
+                </args>
+            </customization>
+			<contacts>
+                <args>
+                    <frontName>contact</frontName>
+                </args>
+            </contacts>
+        </routers>
+		<events>
+			<checkout_cart_product_add_after>
+                <observers>
+					<mage_checkout_cart_product_add_after_observer>
+                        <class>mage/observer</class>
+                        <method>observeCartAdd</method>
+					</mage_checkout_cart_product_add_after_observer>
+                </observers>
+			</checkout_cart_product_add_after>
+        </events>
+        <layout>
+            <updates>
+                <vendor>
+                    <file>vendor.xml</file>
+                </vendor>
+            </updates>
+        </layout>
+    </frontend>
+	<global>
+	    
+	    <!-- Override Blocks -->
+		<blocks>
+		  <vendor>
+			<class>Vendor_SampleModule_Block</class>
+		  </vendor>
+		</blocks>
+		
+		<!-- Override Model -->
+		<models>
+			<sales>
+				<rewrite>
+					<order>Vendor_SampleModule_Model_Order</order>
+				</rewrite>
+			</sales>
+			
+		</models>
+	</global>
+	
+</config>
